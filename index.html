@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#070203">
+  <meta name="description" content="RIZKY STORE — toko digital Banyumas dengan katalog produk, checkout, QRIS All Payment, DANA, testimoni, transaksi, dan panel admin.">
+  <title>RIZKY STORE — Digital Store</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+</head>
+<body>
+  <div id="entryScreen" class="entry-screen">
+    <div class="entry-card">
+      <div class="entry-avatar"><img src="assets/profile.webp" alt="RIZKY STORE"></div>
+      <p class="eyebrow">WELCOME TO</p>
+      <h1>RIZKY STORE</h1>
+      <p class="entry-copy">Top up, produk digital, jasa online, dan layanan cepat dengan tampilan baru RIZKY STORE.</p>
+      <button id="enterBtn" class="btn btn-primary btn-large">MASUK KE STORE</button>
+      <p class="music-note">♪ Musik pembuka akan diputar setelah tombol masuk ditekan.</p>
+    </div>
+  </div>
+
+  <audio id="bgMusic" loop preload="auto">
+    <source src="assets/music/rizky-store-music.mp3" type="audio/mpeg">
+  </audio>
+
+  <header class="topbar">
+    <a class="brand" href="#home" aria-label="Rizky Store">
+      <span class="brand-mark">RS</span>
+      <span><strong>RIZKY</strong><small>STORE</small></span>
+    </a>
+    <div class="top-actions">
+      <button id="musicBtn" class="icon-btn" title="Putar / jeda musik" aria-label="Musik">♫</button>
+      <button id="adminBtn" class="icon-btn" title="Panel admin" aria-label="Admin">⚙</button>
+    </div>
+  </header>
+
+  <main>
+    <section id="home" class="section hero-section">
+      <div class="hero-glow"></div>
+      <div class="hero-copy">
+        <p class="eyebrow">RIZKY STORE • BANYUMAS</p>
+        <h1>Belanja digital<br><span>lebih keren.</span></h1>
+        <p>Pesan produk favoritmu, pilih QRIS All Payment atau DANA, lalu konfirmasi dengan cepat melalui WhatsApp.</p>
+        <div class="hero-buttons">
+          <a href="#produk" class="btn btn-primary">LIHAT PRODUK</a>
+          <a href="#testimoni" class="btn btn-ghost">TESTIMONI</a>
+        </div>
+      </div>
+      <div class="hero-profile">
+        <div class="profile-ring"></div>
+        <img src="assets/profile.webp" alt="Foto RIZKY STORE">
+        <div class="profile-tag">RIZKY STORE</div>
+      </div>
+    </section>
+
+    <section class="quick-stats">
+      <div><strong>24/7</strong><span>Order Online</span></div>
+      <div><strong>FAST</strong><span>Respon WhatsApp</span></div>
+      <div><strong>QRIS</strong><span>All Payment</span></div>
+    </section>
+
+    <section id="produk" class="section">
+      <div class="section-head">
+        <div><p class="eyebrow">STORE</p><h2>Produk Pilihan</h2></div>
+        <button id="searchToggle" class="small-action">⌕ Cari</button>
+      </div>
+      <div id="searchBox" class="search-box hidden"><input id="searchInput" type="search" placeholder="Cari produk..."></div>
+      <div id="categoryTabs" class="tabs"></div>
+      <div id="productGrid" class="product-grid"></div>
+      <div id="emptyProducts" class="empty hidden">Belum ada produk pada kategori ini.</div>
+    </section>
+
+    <section id="pesanan" class="section">
+      <div class="section-head"><div><p class="eyebrow">ORDER</p><h2>Pesanan Terakhir</h2></div></div>
+      <div id="orderHistory" class="order-history"></div>
+    </section>
+
+    <section id="testimoni" class="section">
+      <div class="section-head">
+        <div><p class="eyebrow">REVIEW</p><h2>Testimoni</h2></div>
+        <button id="addTestimonialBtn" class="small-action">+ Tambah</button>
+      </div>
+      <div id="testimonialList" class="testimonial-list"></div>
+    </section>
+
+    <section id="akun" class="section account-section">
+      <div class="account-card">
+        <img src="assets/profile.webp" alt="Profil RIZKY STORE">
+        <div><p class="eyebrow">AKUN</p><h2>Rizky Store</h2><p>Kelola pesanan dan lihat informasi toko dari perangkat ini.</p></div>
+      </div>
+    </section>
+
+    <section id="tentang" class="section about-section">
+      <p class="eyebrow">ABOUT</p><h2>RIZKY STORE</h2>
+      <p>Website toko digital bergaya merah-hitam dengan katalog online, panel admin, foto produk, foto testimoni, checkout, pembayaran QRIS/DANA, dan konfirmasi WhatsApp.</p>
+      <div class="feature-list">
+        <div><b>✓</b><span>Admin dapat upload produk baru + foto maksimal 10 MB</span></div>
+        <div><b>✓</b><span>Foto produk tersimpan online di Supabase Storage</span></div>
+        <div><b>✓</b><span>Testimoni bisa memakai foto</span></div>
+        <div><b>✓</b><span>QRIS All Payment + DANA Banyumas</span></div>
+      </div>
+    </section>
+  </main>
+
+  <nav class="bottom-nav">
+    <a href="#produk" data-nav="produk"><span>▦</span><small>Produk</small></a>
+    <a href="#home" data-nav="home" class="active"><span>⌂</span><small>Home</small></a>
+    <a href="#pesanan" data-nav="pesanan"><span>⌕</span><small>Pesanan</small></a>
+    <a href="#testimoni" data-nav="testimoni"><span>☁</span><small>Testimoni</small></a>
+    <a href="#akun" data-nav="akun"><span>●</span><small>Akun</small></a>
+    <a href="#tentang" data-nav="tentang"><span>ⓘ</span><small>Tentang</small></a>
+  </nav>
+
+  <div id="checkoutModal" class="modal hidden">
+    <div class="modal-panel">
+      <button class="close-btn" data-close="checkoutModal">×</button>
+      <p class="eyebrow">CHECKOUT</p><h2>Buat Pesanan</h2>
+      <div id="checkoutSummary" class="summary"></div>
+      <form id="checkoutForm">
+        <label>Nama<input name="name" required placeholder="Masukkan nama"></label>
+        <label>Nomor WhatsApp<input name="phone" required inputmode="tel" placeholder="08xxxxxxxxxx"></label>
+        <label>Metode pembayaran
+          <select name="payment" id="paymentSelect"><option>QRIS</option><option>DANA</option></select>
+        </label>
+        <div id="qrArea" class="qr-area">
+          <div id="qrPreview" class="qr-placeholder">QR PEMBAYARAN</div>
+          <div class="payment-info">
+            <strong>QRIS ALL PAYMENT</strong><span>Scan QR untuk pembayaran.</span>
+            <strong>DANA</strong><span>085797103586 — AN/RA**I</span><small>Region Banyumas</small>
+          </div>
+          <p>Lakukan pembayaran sesuai total, lalu konfirmasi melalui WhatsApp.</p>
+        </div>
+        <button class="btn btn-primary btn-large" type="submit">KONFIRMASI VIA WA</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="adminModal" class="modal hidden">
+    <div class="modal-panel admin-panel">
+      <button class="close-btn" data-close="adminModal">×</button>
+      <div id="adminLoginView">
+        <p class="eyebrow">SECURITY</p><h2>Admin Control Panel</h2>
+        <p class="muted">Hanya akun yang tercatat di tabel admin_users yang dapat mengelola toko.</p>
+        <form id="loginForm">
+          <label>Email Admin<input name="username" required autocomplete="username" type="email" placeholder="admin@email.com"></label>
+          <label>Password<input name="password" required type="password" autocomplete="current-password"></label>
+          <button class="btn btn-primary btn-large" type="submit">LOGIN ADMIN</button>
+        </form>
+      </div>
+
+      <div id="adminDashboard" class="hidden">
+        <div class="admin-title-row"><div><p class="eyebrow">DASHBOARD</p><h2>Kelola Store</h2></div><button id="logoutBtn" class="small-action">Logout</button></div>
+        <div class="admin-tabs">
+          <button class="admin-tab active" data-admin-tab="products">Produk</button>
+          <button class="admin-tab" data-admin-tab="testimonials">Testimoni</button>
+          <button class="admin-tab" data-admin-tab="settings">Pengaturan</button>
+        </div>
+
+        <div id="adminProducts">
+          <form id="productForm" class="admin-form">
+            <input type="hidden" name="id">
+            <label>Nama produk<input name="name" required placeholder="Contoh: Mobile Legends 86 Diamonds"></label>
+            <div class="two-col">
+              <label>Harga<input name="price" required type="number" min="0" placeholder="10000"></label>
+              <label>Kategori<select name="category"><option>Top Up</option><option>Jasa</option><option>Akun</option><option>Digital</option></select></label>
+            </div>
+            <label>Deskripsi<input name="description" placeholder="Keterangan singkat"></label>
+            <label>Badge<input name="badge" placeholder="BEST SELLER"></label>
+            <label>Foto produk <span class="required-note">wajib saat produk baru • JPG/PNG/WebP • maksimal 10 MB</span><input name="image" type="file" accept="image/jpeg,image/png,image/webp" required></label>
+            <div id="productImagePreview" class="product-image-preview"></div>
+            <div class="form-actions"><button class="btn btn-primary" type="submit">SIMPAN PRODUK</button><button id="cancelEdit" class="btn btn-ghost hidden" type="button">Batal Edit</button></div>
+          </form>
+          <div id="adminProductList" class="admin-product-list"></div>
+        </div>
+
+        <div id="adminTestimonials" class="hidden">
+          <p class="muted">Kelola foto dan tampilan testimoni pelanggan dari sini.</p>
+          <div id="adminTestimonialList" class="admin-testimonial-list"></div>
+        </div>
+
+        <div id="adminSettings" class="hidden">
+          <form id="settingsForm" class="admin-form">
+            <label>Nomor WhatsApp Store<input name="wa" inputmode="tel" placeholder="6285797103586"></label>
+            <label>Nama Store<input name="storeName" placeholder="Rizky Store"></label>
+            <label>QR pembayaran <span class="required-note">JPG/PNG/WebP • maksimal 10 MB</span><input name="qr" type="file" accept="image/jpeg,image/png,image/webp"></label>
+            <div class="payment-static"><b>QRIS ALL PAYMENT</b><span>DANA: 085797103586 — AN/RA**I</span><span>Region Banyumas</span></div>
+            <div id="adminQrPreview" class="qr-preview-small"></div>
+            <button class="btn btn-primary" type="submit">SIMPAN PENGATURAN</button>
+          </form>
+          <div class="security-note"><b>Supabase:</b> akun admin dibuat melalui Authentication, lalu UUID user ditambahkan ke tabel <code>admin_users</code>. Bucket foto produk dan testimoni dibatasi maksimal 10 MB.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="testimonialModal" class="modal hidden">
+    <div class="modal-panel">
+      <button class="close-btn" data-close="testimonialModal">×</button>
+      <p class="eyebrow">REVIEW</p><h2>Tambah Testimoni</h2>
+      <form id="testimonialForm">
+        <label>Nama<input name="name" required placeholder="Nama kamu"></label>
+        <label>Rating<select name="rating"><option value="5">★★★★★</option><option value="4">★★★★☆</option><option value="3">★★★☆☆</option><option value="2">★★☆☆☆</option><option value="1">★☆☆☆☆</option></select></label>
+        <label>Pesan<textarea name="message" required placeholder="Tulis pengalamanmu..."></textarea></label>
+        <label>Foto testimoni <span class="required-note">opsional • JPG/PNG/WebP • maksimal 10 MB</span><input name="image" type="file" accept="image/jpeg,image/png,image/webp"></label>
+        <div id="testimonialImagePreview" class="testimonial-image-preview"></div>
+        <button class="btn btn-primary btn-large" type="submit">KIRIM TESTIMONI</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="toast" class="toast"></div>
+  <script src="script.js"></script>
+</body>
+</html>
