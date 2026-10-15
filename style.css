@@ -5,3 +5,205 @@
   .product-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
     gap: 10px;
+/* =========================================
+RIZKYSTORE BANYUMAS — PREMIUM MOTION
+Tambahkan di bagian paling bawah CSS
+========================================= */
+
+:root {
+--motion-fast: 180ms;
+--motion-normal: 320ms;
+--motion-slow: 650ms;
+--ease-premium: cubic-bezier(.22, 1, .36, 1);
+}
+
+/* Transisi halus */
+a,
+button,
+.btn,
+.icon-btn,
+.small-action,
+.tab,
+.admin-tab,
+.admin-product-actions button,
+.admin-testimonial-actions button {
+transition:
+color var(--motion-normal) ease,
+background-color var(--motion-normal) ease,
+border-color var(--motion-normal) ease,
+box-shadow var(--motion-normal) ease,
+transform var(--motion-normal) var(--ease-premium);
+}
+
+/* Tombol premium */
+.btn-primary {
+position: relative;
+overflow: hidden;
+isolation: isolate;
+box-shadow: 0 6px 22px rgba(255, 23, 56, .20);
+}
+
+.btn-primary::before {
+content: "";
+position: absolute;
+inset: 0;
+z-index: -1;
+background: linear-gradient(
+110deg,
+transparent 20%,
+rgba(255, 255, 255, .22) 48%,
+transparent 76%
+);
+transform: translateX(-120%);
+transition: transform 650ms var(--ease-premium);
+}
+
+.btn-primary:hover::before {
+transform: translateX(120%);
+}
+
+.btn-primary:hover {
+transform: translateY(-2px);
+box-shadow:
+0 12px 32px rgba(255, 23, 56, .30),
+0 0 18px rgba(255, 23, 56, .12);
+}
+
+.btn-ghost:hover,
+.icon-btn:hover,
+.small-action:hover {
+border-color: var(--red2);
+background: #260810;
+transform: translateY(-2px);
+}
+
+/* Kartu produk */
+.product-card {
+overflow: hidden;
+transition:
+transform var(--motion-normal) var(--ease-premium),
+border-color var(--motion-normal) ease,
+box-shadow var(--motion-normal) ease;
+animation: premium-rise 600ms var(--ease-premium) both;
+}
+
+.product-card:nth-child(2) { animation-delay: 50ms; }
+.product-card:nth-child(3) { animation-delay: 100ms; }
+.product-card:nth-child(4) { animation-delay: 150ms; }
+.product-card:nth-child(5) { animation-delay: 200ms; }
+.product-card:nth-child(6) { animation-delay: 250ms; }
+
+.product-card:hover {
+transform: translateY(-5px);
+border-color: rgba(255, 51, 77, .72);
+box-shadow:
+0 18px 42px rgba(0, 0, 0, .36),
+0 0 24px rgba(255, 23, 56, .10);
+}
+
+.product-photo {
+transition:
+transform 500ms var(--ease-premium),
+border-color var(--motion-normal) ease;
+}
+
+.product-card:hover .product-photo {
+transform: scale(1.025);
+border-color: rgba(255, 51, 77, .65);
+}
+
+/* Foto profil dan gambar */
+.hero-profile img,
+.entry-avatar img,
+.account-card img,
+.testimonial img {
+transition:
+transform 500ms var(--ease-premium),
+box-shadow var(--motion-normal) ease;
+}
+
+.hero-profile img:hover,
+.account-card img:hover {
+transform: translateY(-3px);
+box-shadow: 0 12px 45px rgba(255, 23, 56, .22);
+}
+
+/* Cahaya profil yang bergerak lembut */
+.profile-ring {
+animation: premium-orbit 12s linear infinite;
+}
+
+.hero-glow {
+animation: premium-breathe 7s ease-in-out infinite alternate;
+pointer-events: none;
+}
+
+/* Navigasi bawah */
+.bottom-nav a {
+transition:
+background-color var(--motion-normal) ease,
+color var(--motion-normal) ease,
+transform var(--motion-normal) var(--ease-premium);
+}
+
+.bottom-nav a:hover {
+transform: translateY(-2px);
+}
+
+.bottom-nav a.active {
+box-shadow: inset 0 0 0 1px rgba(255, 51, 77, .22);
+}
+
+.bottom-nav span {
+transition: transform var(--motion-normal) var(--ease-premium);
+}
+
+.bottom-nav a:hover span {
+transform: translateY(-2px);
+}
+
+/* Tab kategori dan panel admin */
+.tab:hover,
+.admin-tab:hover {
+color: #fff;
+border-color: var(--red2);
+}
+
+.tab.active,
+.admin-tab.active {
+box-shadow: 0 4px 18px rgba(255, 23, 56, .16);
+}
+
+/* Modal dan layar pembuka */
+.modal-panel {
+animation: premium-rise 350ms var(--ease-premium) both;
+}
+
+.entry-card {
+animation: premium-rise 700ms var(--ease-premium) both;
+}
+
+.entry-avatar {
+animation: premium-breathe 5s ease-in-out infinite alternate;
+}
+
+/* Input yang sedang digunakan */
+.search-box input,
+.admin-form input,
+.admin-form select,
+.admin-form textarea,
+.modal-panel input,
+.modal-panel select,
+.modal-panel textarea {
+transition:
+border-color var(--motion-normal) ease,
+box-shadow var(--motion-normal) ease;
+}
+
+.search-box input:focus,
+.admin-form input:focus,
+.admin-form select:focus,
+.admin-form textarea:focus,
+.modal-panel input:focus,
+.modal-panel select:focus,
+.modal-panel textarea:focus {
