@@ -206,4 +206,4 @@ box-shadow var(--motion-normal) ease;
 .admin-form textarea:focus,
 .modal-panel input:focus,
 .modal-panel select:focus,
-.modal-panel textarea:focus {
+.modal-panel textarea:focus{
